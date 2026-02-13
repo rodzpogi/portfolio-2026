@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image"; // Add this import
 
 const Hero = () => {
   return (
@@ -12,13 +13,29 @@ const Hero = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-500/10 blur-[120px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto pt-20">
+      <div className="max-w-7xl mx-auto pt-24 pb-12">
         <div className="text-center flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="flex flex-col items-center"
           >
+            {/* --- PROFILE PICTURE START --- */}
+            <div className="relative mb-8">
+              <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white dark:border-slate-800 overflow-hidden shadow-2xl">
+                <Image 
+                  src="/profile1.jpg" // This looks in your public folder
+                  alt="Rodz Profile"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+            {/* --- PROFILE PICTURE END --- */}
+
             <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-blue-600 uppercase bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 rounded-full">
               Full-Stack Developer
             </span>
@@ -42,15 +59,14 @@ const Hero = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               
-              {/* Fixed Social Icons Container */}
-              <div className="flex items-center gap-5 py-2">
-                <a href="https://github.com" target="_blank" className="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-all flex items-center justify-center">
+              <div className="flex items-center gap-5">
+                <a href="#" className="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-all">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" className="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-all flex items-center justify-center">
+                <a href="#" className="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-all">
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="mailto:your@email.com" className="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-all flex items-center justify-center">
+                <a href="#" className="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-all">
                   <Mail className="w-6 h-6" />
                 </a>
               </div>
