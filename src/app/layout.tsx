@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar"; // Changed this to a relative path
+import Navbar from "@/components/Navbar";
+import TechBackground from "@/components/ui/TechBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    // Added "dark" class here to ensure the tech theme works perfectly
+    <html lang="en" className="scroll-smooth dark">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-blue-500/30 selection:text-white`}
+      >
+        {/* The Background stays fixed behind everything */}
+        <TechBackground />
+        
+        {/* The Navbar stays on top */}
         <Navbar />
-        {children}
+        
+        {/* The Main Content */}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );
