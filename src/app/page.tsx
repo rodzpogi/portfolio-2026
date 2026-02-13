@@ -1,15 +1,20 @@
+import Hero from "../components/sections/Hero";
+import Projects from "../components/sections/Projects"; // Ensure your file is named Projects.tsx
+import Skills from "../components/sections/Skills";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-6 text-center">
-      <h1 className="text-5xl font-extrabold tracking-tight underline decoration-blue-500">
-        Portfolio 2024
-      </h1>
-      <p className="mt-4 text-lg text-slate-500 font-medium">
-        System Architecting in Progress...
-      </p>
-      <div className="mt-8 px-4 py-2 bg-slate-900 text-white dark:bg-white dark:text-black rounded-full text-sm font-mono">
-        Status: Foundation Complete
-      </div>
+    <main className="bg-white dark:bg-slate-950">
+      <Hero />
+      <Skills />
+      <Projects />
+      
+      {/* Professional Footer */}
+      <footer className="py-12 text-center border-t border-slate-100 dark:border-slate-900">
+        <p className="text-slate-500 text-sm font-medium">
+          © {new Date().getFullYear()} RODZ.DEV • Built with Next.js
+        </p>
+      </footer>
     </main>
   );
 }

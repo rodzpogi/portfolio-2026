@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
@@ -17,4 +15,13 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  /* Using a modern system font stack for a professional feel */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
 }
