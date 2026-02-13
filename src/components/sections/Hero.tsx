@@ -1,11 +1,9 @@
 "use client";
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Facebook, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 
-// 1. Moving the animation definition OUTSIDE the component 
-// This makes it "static" so TypeScript sees it clearly.
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
@@ -48,7 +46,7 @@ const Hero = () => {
             <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full border-2 border-blue-500/30 overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.2)]">
               <Image 
                 src="/profile1.jpg" 
-                alt="Rodz Professional Portrait"
+                alt="Rodz Rianzares Professional Portrait"
                 fill
                 className="object-cover"
                 priority
@@ -101,30 +99,36 @@ const Hero = () => {
                 href="#projects"
                 className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:scale-105 active:scale-95"
               >
-                View My Work 
+                Contact Me Here!  
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               
               <div className="flex items-center gap-4">
+                {/* LinkedIn */}
                 <a 
-                  href="https://github.com/rodzpogi" 
+                  href="https://www.linkedin.com/in/rodz-rianzares-9a60073b1/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-3 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all backdrop-blur-md hover:-translate-y-1"
-                >
-                  <Github size={24} />
-                </a>
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all backdrop-blur-md hover:-translate-y-1"
+                  aria-label="LinkedIn"
                 >
                   <Linkedin size={24} />
                 </a>
+                {/* Facebook */}
                 <a 
-                  href="mailto:yourname@email.com" 
+                  href="https://www.facebook.com/profile.php?id=61585451699860" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="p-3 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all backdrop-blur-md hover:-translate-y-1"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={24} />
+                </a>
+                {/* Gmail */}
+                <a 
+                  href="mailto:rodzrianzares0@gmail.com" 
+                  className="p-3 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all backdrop-blur-md hover:-translate-y-1"
+                  aria-label="Email"
                 >
                   <Mail size={24} />
                 </a>
