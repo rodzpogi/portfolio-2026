@@ -1,31 +1,67 @@
 @import "tailwindcss";
 
 :root {
-  /* Deep Midnight Navy/Black */
   --background: #020617; 
   --foreground: #f8fafc;
+  --grid-line: rgba(30, 41, 59, 0.4);
 }
 
-/* We target both html and body to be safe */
+@theme {
+  /* This tells Tailwind v4 about our custom animations */
+  --animate-grid-scroll: grid-scroll 20s linear infinite;
+  @keyframes grid-scroll {
+    from { background-position: 0 0; }
+    to { background-position: 40px 40px; }
+  }
+}
+
 html, body {
   color: var(--foreground);
-  /* The !important ensures no other class (like bg-white) can override this */
-  background-color: #020617 !important; 
+  background-color: var(--background) !important; 
   font-family: ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
-/* Custom "Matrix" Grid Effect */
-.bg-grid-pattern {
+/* 
+  The "Cyber-Grid" Wrapper 
+  We will use this in layout.tsx to wrap the whole site
+*/
+.cyber-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  /* This makes the grid move slowly */
+  animation: grid-scroll 20s linear infinite;
 }
 
-.bg-grid-mask {
-  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+/* The "Matrix" fade-out effect */
+.cyber-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at center, transparent 20%, var(--background) 85%);
+  pointer-events: none;
+}
+
+/* Custom scrollbar for that "Techy" look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
 }

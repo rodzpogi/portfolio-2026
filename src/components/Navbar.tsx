@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Menu, X, Code2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,69 +9,94 @@ const Navbar = () => {
   const navLinks = [
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Contact", href: "mailto:your-email@gmail.com" },
+    { name: "Contact", href: "#contact" }, // Updated from mailto to anchor
   ];
 
   return (
-    // REMOVED bg-white. Added glassmorphism.
-    <nav className="fixed w-full z-50 top-0 left-0 border-b border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <nav className="fixed w-full z-[100] top-0 left-0 border-b border-white/5 bg-slate-950/40 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Code2 className="w-8 h-8 text-blue-500" />
-            <span className="font-bold text-xl tracking-tight text-white">
+        <div className="flex items-center justify-between h-20">
+          
+          {/* LOGO with Tech Glow */}
+          <a href="#" className="flex items-center gap-2 group cursor-pointer">
+            <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <Code2 className="w-6 h-6 text-blue-500" />
+            </div>
+            <span className="font-bold text-xl tracking-tighter text-white uppercase group-hover:text-blue-400 transition-colors">
               RODZ<span className="text-blue-500">.DEV</span>
             </span>
-          </div>
+          </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+          <div className="hidden md:flex items-center gap-10">
+            <div className="flex items-baseline space-x-8 font-mono text-xs tracking-widest uppercase">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-slate-300 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors"
+                  className="text-slate-400 hover:text-blue-400 transition-all duration-300"
                 >
                   {link.name}
                 </a>
               ))}
-              <button className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-blue-500/20">
-                Resume
-              </button>
             </div>
+            
+            {/* RESUME BUTTON (Direct Link) */}
+          <a 
+  href="https://www.linkedin.com/in/rodnel-rianzares-9a60073b1/" 
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] active:scale-95 cursor-pointer"
+>
+  LinkedIn
+</a>
           </div>
 
           {/* Mobile Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-slate-400 hover:text-white"
+              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-slate-950 border-b border-white/10 backdrop-blur-xl">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block px-3 py-4 text-base font-medium text-slate-300 hover:text-blue-400 border-b border-white/5"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Mobile Menu with Animation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-slate-950/95 border-b border-white/5 backdrop-blur-2xl overflow-hidden"
+          >
+            <div className="px-4 pt-4 pb-8 space-y-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="block px-4 py-4 text-sm font-mono tracking-widest uppercase text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 rounded-xl transition-all"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="pt-4 px-4">
+                <a 
+                  href="/resume.pdf"
+                  className="block w-full text-center bg-blue-600 py-4 rounded-xl font-bold text-white shadow-lg"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Download Resume
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
