@@ -43,12 +43,12 @@ const Navbar = () => {
             
             {/* RESUME BUTTON (Direct Link) */}
           <a 
-  href="https://www.linkedin.com/in/rodnel-rianzares-9a60073b1/" 
-  target="_blank"
+    href="/resume.pdf" 
+  target="_blank" 
   rel="noopener noreferrer"
   className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] active:scale-95 cursor-pointer"
 >
-  LinkedIn
+  Resume
 </a>
           </div>
 
